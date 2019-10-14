@@ -1,0 +1,16 @@
+<div>
+
+</div>
+<div>
+  <article *ngFor="let articles of articles">
+      <h2>
+        <a [routerLink]="['/articles',articles._id]">
+          {{ articles.titre }}</a>
+      </h2>
+          <p>{{ articles.contenu }}</p>
+  </article>
+</div>
+<hr>
+
+
+

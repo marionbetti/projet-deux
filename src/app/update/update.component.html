@@ -1,0 +1,137 @@
+<form #f="ngForm" (submit)="onSubmitNewArticle($event,f)">
+    <div class="form-group">
+        <label for="titre">titre</label>
+        <input class="form-control "
+                type="text"
+                name="titre"
+                ngModel
+                #titre="ngModel"
+                required
+                    minlength="3"
+                    maxlength="50"
+                >
+    <div class="alert alert-danger" *ngIf="titre.touched && !titre.valid">
+
+    </div>
+    </div>
+
+    <div class="form-group">
+        <label for="contenu">
+        Contenu
+        </label>
+          <textarea
+          name="contenu"
+          class="form-control"
+          ngModel
+          #contenu="ngModel"
+          required
+          minlength="5"
+          ></textarea>
+    <div class="alert alert-danger" *ngIf="titre.touched && !titre.valid">
+
+    </div>
+   </div>
+
+   <label for="date">date</label>
+      <input
+      type="date"
+      name="dateCreation"
+      value="CurrentTime"
+      ngModel
+      #dateCreation="ngModel"
+      required>
+
+
+   <div class="form-group">
+      <label
+      for="nomAuteur">
+      Nom de l'auteur
+      </label>
+        <textarea
+        name="nomAuteur"
+        class="form-control"
+        ngModel
+        #nomAuteur="ngModel"
+          required
+          minlength="10"
+        ></textarea>
+    <div class="alert alert-danger" *ngIf="nomAuteur.touched && !nomAuteur.valid">
+
+    </div>
+    </div>
+  </form>
+
+  <div>
+      <div class="form-group" >
+      <label for="categorie">Catégorie :</label>
+      </div>
+
+      <select class="selectpicker"
+              name="categorie"
+              multiple title ="choix multiple"
+              ngModel
+              #categorie="ngModel"
+              required>
+          <option value="cocktails">Cocktails</option>
+
+        </select>
+    </div>
+        <div class="row">
+            <legend class="col-form-label">Status</legend>
+            <div class="col-sm-10">
+              <div class="form-check">
+                <input class="form-check-input"
+                       type="radio"
+                       id="gridRadios1"
+                       value="true"
+                       checked
+                       name="estPublie"
+                       ngModel
+                       #estPublie="ngModel"
+                       required>
+                <label class="form-check-label" for="gridRadios1">
+                  Publié
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input"
+                       type="radio"
+                       id="gridRadios2"
+                       value="false"
+                       name="estPublie"
+                       ngModel
+                       #estPublie="ngModel"
+                       required>
+                <label class="form-check-label" for="gridRadios2">
+                  Brouillon
+                </label>
+              </div>
+            </div>
+          </div>
+    <div>
+      <div><label for="">Email :</label></div>
+          <input  class="form-control "
+                  type="email"
+                  name="emailAuteur"
+                  ngModel
+                  #emailAuteur="ngModel"
+                  required
+                      minlength="5"
+                      maxlength="30"
+                  >
+  </div>
+
+    <div class="form-group">
+        <input
+        type="submit"
+        class="btn btn-light"
+        value="Mise à jour "
+        [disabled]="!f.valid"
+        >
+    </div>
+  <div class="alert alert-succes" *ngIf="isOk">
+    Mise à jour !!</div>
+
+
+  {{ f.value|json }}
+

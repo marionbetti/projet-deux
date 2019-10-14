@@ -1,0 +1,63 @@
+<form #f="ngForm" (submit)="onSubmitNewCommentaire($event,f)">
+  <div class="form-group">
+      <label for="contenu">Contenu</label>
+      <input class="form-control "
+              type="text"
+              name="contenu"
+              ngModel
+              #contenu="ngModel"
+              required
+                  minlength="2"
+                  maxlength="50"
+              >
+  <div class="alert alert-danger" *ngIf="contenu.touched && !contenu.valid">
+  </div>
+    </div>
+<div>
+    <label for="dateCreation">date</label>
+    <input
+    type="date"
+    name="dateCreation"
+    value="CurrentTime"
+    ngModel
+    #dateCreation="ngModel"
+    required>
+</div>
+
+  <div class="form-group">
+      <label
+      for="nomAuteur">
+      nomAuteur
+      </label>
+      <textarea
+      name="nomAuteur"
+      class="form-control"
+      ngModel
+      #nomAuteur="ngModel"
+      required
+      minlength="5"
+      ></textarea>
+  <div class="alert alert-danger" *ngIf="nomAuteur.touched && !nomAuteur.valid">
+  </div>
+ </div>
+ <div class="form-group">
+  <input
+  type="submit"
+  class="btn btn-light"
+  value="Valider"
+  [disabled]="!f.valid"
+  >
+ </div>
+ <div class="btn btn-light" *ngIf="isOk">Nouveau commentaire crée!!</div>
+
+ <div>
+    <article *ngFor="let commentaire of commentaires">
+        <h2>
+          <a [routerLink]="['/commentaires',commentaire._id]">
+            {{ commentaires.titre }}
+          </a>
+        </h2>
+        <p>{{ commentaires.contenu }}</p>
+    </article>
+  </div>
+{{ f.value | json}}
